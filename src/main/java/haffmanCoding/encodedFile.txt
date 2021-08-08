@@ -1,0 +1,1 @@
+this is a file containing some random stuff , for checking the content and encode decode using huffman algorithm.
