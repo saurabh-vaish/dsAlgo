@@ -1,5 +1,8 @@
 package tree.dfs;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Stack;
 import java.util.function.Consumer;
 
@@ -54,6 +57,77 @@ public class DfsOrder<T> {
     }
 
 
+
+    public List<T> dfsPreorderIteration(Nodee<T> root){
+
+        List<T> list= new LinkedList<>();
+        Stack<Nodee<T>> stack = new Stack<>();
+        stack.push(root); // O(1)
+
+        while (!stack.isEmpty()){
+            Nodee<T> visited = stack.pop();
+
+            list.add(visited.value);
+
+            if (visited.right!=null){
+                stack.push(visited.right);      // adding right child first then left then left will be on top and will pop first so that we can print tree left side nodes then right
+            }
+            if (visited.left!=null){
+                stack.push(visited.left);
+            }
+        }
+
+        return list;
+    }
+
+
+    public List<T> dfsInOrderIteration(Nodee<T> root){
+        List<T> list = new LinkedList<>();
+        Stack<Nodee<T>> stack = new Stack<>();
+
+        Nodee<T> visited = root;
+        while (true){
+            if(visited!=null){   // first going to left part of tree till leaf node
+                stack.push(visited);
+                visited=visited.left;
+            }else{
+                if(stack.isEmpty()){
+                    break;
+                }
+                visited=stack.pop();
+                list.add(visited.value);
+                visited=visited.right;
+            }
+
+        }
+
+        return list;
+    }
+
+    public List<T> dfsPostOrderIteration(Nodee<T> root) {
+        List<T> list = new LinkedList<>();
+        Stack<Nodee> stack = new Stack<>();
+        while (true) {
+            while (root != null) {
+                stack.push(root);
+                stack.push(root);
+                root = root.left;
+            }
+
+            // Check for empty stack
+            if (stack.empty()) break;
+            root = stack.pop();
+            if (!stack.empty() && stack.peek() == root) root = root.right;
+            else {
+//                System.out.print(root.value + " ");
+                list.add(root.value);
+                root = null;
+            }
+        }
+
+        return list;
+    }
+
     public static void main(String[] args) {
         DfsOrder<String> dfs = new DfsOrder<>();
         Nodee<String> a = new Nodee<>("a");
@@ -88,6 +162,16 @@ public class DfsOrder<T> {
 
         System.out.print("\nDFS in order == ");
         dfs.dfsInOrder(a);
+
+        System.out.print("\nDfs pre order using iteration  == ");
+        dfs.dfsPreorderIteration(a).forEach(s-> System.out.print(s+" "));
+
+        System.out.print("\nDFS post order == ");
+        dfs.dfsPostOrderIteration(a).forEach(s-> System.out.print(s+" "));;
+
+        System.out.print("\nDFS in order using iteration == ");
+        dfs.dfsInOrderIteration(a).forEach(s-> System.out.print(s+" "));
+
 
     }
 

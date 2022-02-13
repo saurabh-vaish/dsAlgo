@@ -39,10 +39,10 @@ public class Bfs<T> {
             Node<T> visited = queue.poll();  // similar to dequeue() in queue O(1)
             System.out.print(visited.value+" ");
             if (visited.left!=null){
-                queue.add(visited.left);
+                queue.offer(visited.left);  // offer used bcs it will not throw exception if insertion is failed
             }
             if (visited.right!=null){
-                queue.add(visited.right);
+                queue.offer(visited.right);
             }
         }
     }
@@ -52,10 +52,10 @@ public class Bfs<T> {
         Node<T> visited = queue.poll();
         System.out.print(visited.value+" ");
         if(visited.left!=null) {
-            queue.add(visited.left);
+            queue.offer(visited.left);
         }
         if(visited.right!=null) {
-            queue.add(visited.right);
+            queue.offer(visited.right);
         }
         bfs(queue);
     }
@@ -70,14 +70,37 @@ public class Bfs<T> {
 
             list.add(visited.value);
             if (visited.left!=null){
-                queue.add(visited.left);
+                queue.offer(visited.left);
             }
             if (visited.right!=null){
-                queue.add(visited.right);
+                queue.offer(visited.right);
             }
         }
         return list;
     }
+
+    // bfs level order traversal
+    public void bfsLevelWise(Node<T> root,List<List<T>> list){
+        Queue<Node<T>> queue = new LinkedList<>();
+        queue.add(root); // O(1)
+
+        while (!queue.isEmpty()){
+            List<T> levelList = new LinkedList<>();
+            int level = queue.size();
+            for(int i=0;i< level;i++) {
+                Node<T> visited = queue.peek();  // similar to dequeue() in queue O(1)
+                if (visited.left != null) {
+                    queue.offer(visited.left);
+                }
+                if (visited.right != null) {
+                    queue.offer(visited.right);
+                }
+                levelList.add(queue.poll().value);
+            }
+            list.add(levelList);
+        }
+    }
+
 
 
     public static void main(String[] args) {
@@ -111,6 +134,14 @@ public class Bfs<T> {
         queue.add(a);
         bfs.bfs(queue);
 
+        System.out.println("\nlevel wise bfs ===");
+        List<List<String>> list =new LinkedList<>();
+        bfs.bfsLevelWise(a,list);
+
+        list.forEach(l->{
+            l.forEach(s-> System.out.print(s+" "));
+            System.out.println();
+        });
 
     }
 

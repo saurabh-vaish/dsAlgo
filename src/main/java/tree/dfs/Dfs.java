@@ -10,6 +10,8 @@ import java.util.function.Consumer;
  * @Solution == Using Stack -- add node , remove it as visited then add all its neighbours
  *              In Dfs we traverse one side of tree first till leaf node then traverse neighbours
  *
+ *             In this solution PreOrder is used to traverse the tree [ root --> all left --> all right ]
+ *
  * @Complexity  == O(n) both time and space
  *
  * @author Saurabh Vaish

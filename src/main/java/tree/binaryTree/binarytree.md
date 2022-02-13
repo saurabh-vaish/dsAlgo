@@ -49,6 +49,7 @@
 **6. Balanced Binary Tree**
 
     It is a type of binary tree in which the difference between the height of the left and the right subtree for each node is either 0 or 1.
+    Hieght of tree at max log(n)
 
 
 #### Terminologies #####
@@ -87,9 +88,9 @@
     5. Compilers use a syntax tree to validate the syntax of every program you write.
 
 **Binary Tree Implementation** 
-    `// Binary Tree in Java
-    
+    `// Binary Tree in Java 
     // Node creation
+    
     class Node {
     int key;
     Node left, right;

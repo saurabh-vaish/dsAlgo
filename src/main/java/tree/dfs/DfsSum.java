@@ -67,7 +67,7 @@ public class DfsSum<T> {
         return dfsSumRecursionWithStack(stack,sum);
     }
 
-    // recursion without stack
+    // recursion without stack , using in order
     public int dfsSumRecursiveWithoutStack(Nodes<Integer> node){
         if(node==null)return 0;
         return dfsSumRecursiveWithoutStack(node.left) + node.value + dfsSumRecursiveWithoutStack(node.right);

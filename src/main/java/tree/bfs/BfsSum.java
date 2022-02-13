@@ -7,7 +7,7 @@ import java.util.Queue;
 
 /**
  *
- * @Problem == Find an element in tree using bfs in tree
+ * @Problem == Find sum of the tree using bfs
  *
  * @Solution == Using linked list -- add node , remove it as visited then add all its neighbours
  *
