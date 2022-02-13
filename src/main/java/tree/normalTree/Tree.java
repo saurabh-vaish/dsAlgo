@@ -13,7 +13,7 @@ public class Tree {
     private Tree left;  // left child
     private Tree right;  // right child
 
-    private boolean isRoot; // to identify its root node
+    private boolean isRoot; // to identify its root node for display purpose
 
     public Tree(){
         this.item=0;
