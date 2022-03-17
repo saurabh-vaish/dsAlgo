@@ -1,24 +1,12 @@
 package linkedlist.singly;
 
 
+import linkedlist.Node;
+
 /***
  *  Implemention of singly linked list using two pointers head and tail
  */
 public class SinglyLinkedList<T> {
-
-    private class Node<T>{
-        T value;
-        Node<T> next;
-
-        public Node(T value){
-            this.value = value;
-        }
-
-        public Node(T value, Node<T> next) {
-            this.value = value;
-            this.next = next;
-        }
-    }
 
     private Node<T> head;
     private Node<T> tail;
@@ -44,6 +32,7 @@ public class SinglyLinkedList<T> {
             tail=head;
         }
         size++;
+        return;
     }
 
 
@@ -56,16 +45,19 @@ public class SinglyLinkedList<T> {
         tail.next=node;
         tail=node;
         size++;
+        return;
     }
 
     public void add(T value){
         if(head==null){
             this.addFirst(value);
+            return;
         }
         Node<T> node = new Node<T>(value);
         tail.next=node;
         tail=node;
         size++;
+        return;
     }
 
     public void add(T value,int index){
@@ -89,7 +81,7 @@ public class SinglyLinkedList<T> {
     }
 
     public void addUsingRec(T value,int index){
-        addRec(value,index,head);
+        head = addRec(value,index,head); // update head
     }
 
     private Node<T> addRec(T value, int index, Node<T> node) {
@@ -191,6 +183,24 @@ public class SinglyLinkedList<T> {
         System.out.println("End");
     }
 
+    public void display(Node<T> node){
+        if(node==null) {
+            System.out.println("List is empty !!");
+            return;
+        }
+        Node<T> temp = node;
+        while(temp!=null){
+            System.out.print(temp.value + "-->");
+            temp=temp.next;
+        }
+        System.out.println("End");
+    }
+
+
+    public Node<T> getHead() {
+        return head;
+    }
+
 
     public Node<T> peek(){
         return head==null?null:head;
@@ -243,4 +253,5 @@ public class SinglyLinkedList<T> {
         System.out.println(list.find(344));
 
     }
+
 }
