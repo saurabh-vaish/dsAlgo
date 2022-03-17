@@ -40,7 +40,11 @@ public class Fibonacci {
 
     private static long fibonacci(int num) {
         if(num<=2)return 1;
-        return fibonacci(num-1)+fibonacci(num-2);
+        return fibonacci(num - 1) + fibonacci(num - 2); // here first all recursive calls will be done for num-1 then it will start with n-2
+        // or for better understanding
+        // long last = fibonacci(num - 1);  // first all calls for this one until it reaches the base condition
+        // long slast = fibonacci(num - 2); // then all calls for n-2
+        // return last + slast;
     }
 
     private static long fibonacciOptimizeUsingDpp(int num, HashMap<Integer, Long> map) {
