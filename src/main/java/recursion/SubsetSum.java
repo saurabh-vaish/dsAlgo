@@ -23,7 +23,15 @@ public class SubsetSum {
         Collections.sort(sum);
         System.out.println(sum);
     }
-    
+
+    /**
+     * Problem 1- In a given array print the sum of  all subsequence sub arrays in sorted order
+     * Time Complexity == O(n)
+     * @param ar
+     * @param index
+     * @param sum
+     * @param total
+     */
     private static void subsetSum(int[] ar, int index, int sum, List<Integer> total) {
         if (index == ar.length) {
             total.add(sum);
@@ -36,6 +44,6 @@ public class SubsetSum {
         // reject the element
         subsetSum(ar, index + 1, sum, total);
     }
-    
-    
+
+
 }

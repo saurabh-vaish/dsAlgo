@@ -1,5 +1,7 @@
 package linkedlist;
 
+import java.util.Collection;
+
 /***
  * Implement a circular linked list
  *
@@ -92,6 +94,12 @@ public class CircularLinkedList<T> {
         } while(temp!=head);
         System.out.println("head");
     }
+
+    public void addAll(Collection<T> collection){
+        collection.forEach(this::add);
+    }
+
+    public Node<T> getHead(){return head;}
 
     public static void main(String[] args) {
         CircularLinkedList<Integer> list = new CircularLinkedList<Integer>();

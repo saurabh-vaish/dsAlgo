@@ -60,6 +60,17 @@ public class MergeSortedList {
         return mergedList.getHead();
     }
 
+    public static Node<Integer> mergeUsingRecursion(Node<Integer> head1,Node<Integer> head2){
+        if(head1==null)return head2;
+        if(head2==null)return head1;
+        if(head1.value< head2.value){
+            head1.next=mergeUsingRecursion(head1.next,head2);
+            return head1;
+        }else{
+            head2.next=mergeUsingRecursion(head1,head2.next);
+            return head2;
+        }
+    }
 
 
         public static void main(String[] args) {
@@ -84,12 +95,16 @@ public class MergeSortedList {
 
         list2.display();
 
-        Node<Integer> mergedListHead = mergeUsingNodes(list1.getHead(),list2.getHead());
+//        Node<Integer> mergedListHead = mergeUsingNodes(list1.getHead(),list2.getHead());
+//
+//        Node<Integer> mergedListHead2 = mergeUsingThirdList(list1.getHead(),list2.getHead());
 
-        Node<Integer> mergedListHead2 = mergeUsingThirdList(list1.getHead(),list2.getHead());
+        Node<Integer> mergedListHead3 = mergeUsingRecursion(list1.getHead(),list2.getHead());
 
-        list2.display(mergedListHead);
-        list2.display(mergedListHead2);
+//        list2.display(mergedListHead);
+//        list2.display(mergedListHead2);
+        list2.display(mergedListHead3);
+
     }
 
 }

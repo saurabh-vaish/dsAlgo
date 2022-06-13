@@ -37,6 +37,9 @@ public class SubsequencesArray {
         int count2 = countAllSubsequencesEqualSumApproach2(ar, 0, 3, 0);
         System.out.println(count2);
 
+        System.out.println("===== subsequences using iteration =====");
+        System.out.println(subsequencesUsingIteration(new int[] { 1, 2, 3 }));
+
     }
 
     /***
@@ -220,5 +223,23 @@ private static int countAllSubsequencesEqualSum(int[] ar, int index, List<Intege
     }
 
 
+    public static List<List<Integer>> subsequencesUsingIteration(int[] ar) {
+        List<List<Integer>> result = new ArrayList<>();
+
+        result.add(new ArrayList<>()); // adding empty
+
+        for (int el : ar) { // iterating array
+
+            int n = result.size(); // getting size of the result array as we need to add array element to all sub arrays
+
+            for (int i = 0; i < n; i++) {
+                List<Integer> internal = new ArrayList<Integer>(result.get(i)); // creating new list from sub arrays as it wont effect refrences
+                internal.add(el); // adding array element
+                result.add(internal);
+            }
+        }
+        
+        return result;
+    }
 
 }
