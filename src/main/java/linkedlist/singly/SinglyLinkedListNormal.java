@@ -97,7 +97,7 @@ public class SinglyLinkedListNormal<T> {
         return temp.value;
     }
 
-    private Node<T> getNode(int index){
+    public Node<T> getNode(int index){
         if(index>size || index<=0)throw new IndexOutOfBoundsException("Invalid index");
         if(head==null)return null;
 //        if(head==tail)return head;
