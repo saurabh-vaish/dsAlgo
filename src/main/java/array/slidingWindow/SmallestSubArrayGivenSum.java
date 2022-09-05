@@ -1,4 +1,4 @@
-package slidingWindow;
+package array.slidingWindow;
 
 /**
  *

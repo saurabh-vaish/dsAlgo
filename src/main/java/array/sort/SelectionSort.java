@@ -1,4 +1,4 @@
-package sort;
+package array.sort;
 
 
 import java.util.Arrays;
@@ -68,6 +68,7 @@ public class SelectionSort {
 //        int [] arr = {};
 //        int [] arr = {1,2,3,4,5,6,7};
         int [] brr = Arrays.copyOf(arr,arr.length);
+        int [] crr = Arrays.copyOf(arr,arr.length);
         System.out.println("Before sorting == "+ Arrays.toString(arr));
         sortAscendingOrder(arr);
         System.out.println("After sorting == "+ Arrays.toString(arr));
@@ -75,5 +76,25 @@ public class SelectionSort {
         System.out.println("Before sorting == "+ Arrays.toString(brr));
         sortDescendingOrder(brr);
         System.out.println("After sorting == "+ Arrays.toString(brr));
+
+        System.out.println("Before sorting == "+ Arrays.toString(crr));
+        simple(crr);
+        System.out.println("After sorting == "+ Arrays.toString(crr));
+    }
+
+    static void simple(int ar[]){
+        // int min=0;
+        for(int i=0;i<ar.length-1;i++){ // traversing each element
+            int min = i;
+            for(int j=i+1;j<ar.length;j++){ // find min element from ith to n
+                if(ar[j]<ar[min]){
+                    min=j;
+                }
+            }
+            // swap min with ith element in each pass
+            int temp=ar[min];
+            ar[min]=ar[i];
+            ar[i]=temp;
+        }
     }
 }

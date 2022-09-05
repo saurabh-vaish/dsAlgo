@@ -1,4 +1,4 @@
-package sort;
+package array.sort;
 
 import java.util.Arrays;
 import java.util.stream.Stream;
@@ -17,8 +17,9 @@ public class MergeSort {
 
         System.out.println(Arrays.toString(newAr));
 
-        mergeSortInPlace(ar,0, ar.length );
+        mergeSortInPlace(ar,0, ar.length);
         System.out.println(Arrays.toString(ar));
+
 
     }
 
@@ -108,27 +109,20 @@ public class MergeSort {
         // run and store until one the array is empty
         while (i<mid && j< end){
             if(ar[i]<ar[j]){
-                mix[k]=ar[i];
-                i++;
+                mix[k++]=ar[i++];
             }else{
-                mix[k]=ar[j];
-                j++;
+                mix[k++]=ar[j++];
             }
-            k++;
         }
 
 
         // copy remaining elements
         while (i< mid){
-            mix[k]=ar[i];
-            i++;
-            k++;
+            mix[k++]=ar[i++];
         }
 
         while (j< end){
-            mix[k] = ar[j];
-            j++;
-            k++;
+            mix[k++] = ar[j++];
         }
 
         for (int l = 0; l < mix.length; l++) {
@@ -136,6 +130,7 @@ public class MergeSort {
         }
 
     }
+
 
 
 }

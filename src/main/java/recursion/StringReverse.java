@@ -15,6 +15,9 @@ public class StringReverse {
 
         System.out.println("recursive solution = ");
         System.out.println(stringReverseUsingRecursion(str,""));
+
+        System.out.println("recursive solution2 = ");
+        System.out.println(stringReverseUsingRecursion2(str));
     }
 
     private static String stringReverseUsingReverseMethod(String str) {
@@ -34,5 +37,11 @@ public class StringReverse {
             return stringReverse;
         stringReverse+=stringReverseUsingRecursion(str.substring(1),stringReverse)+str.substring(0, 1);
         return stringReverse;
+    }
+
+    private static String stringReverseUsingRecursion2(String str) {
+        if(str.length()==0)
+            return str;
+        return stringReverseUsingRecursion2(str.substring(1))+str.charAt(0);
     }
 }
