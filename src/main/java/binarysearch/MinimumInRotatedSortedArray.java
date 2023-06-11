@@ -24,21 +24,32 @@ public class MinimumInRotatedSortedArray {
         System.out.println("min = "+min);
     }
 
+    // log(n)
     private static int findMinimum(int[] ar) {
         int left=0;
         int right= ar.length-1;
+        int ans = Integer.MAX_VALUE;
+
         if(ar.length==1){
             return ar[0];
         }
-        while (left<right){
-            int mid=(left+right)/2;
-            if(ar[mid]<=ar[ar.length-1]){
-                right=mid;
-            }else{
-                left=mid+1;
+        while (left<=right){
+            int mid=left + (right-left)/2;
+
+            if(ar[left]<=ar[right]){ // already sorted
+                ans = Math.min(ans,ar[left]);
+                break;
+            }
+
+            if(ar[left]<=ar[mid]){
+                ans = Math.min(ans,ar[left]);
+                left=mid+1; // search in other part , eliminate left
+            }else {
+                ans= Math.min(ans,ar[mid]); // mid because high will be always greater
+                right = mid-1;
             }
         }
-        return ar[left];
+        return ans;
     }
 
 

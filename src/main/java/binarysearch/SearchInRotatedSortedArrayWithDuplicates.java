@@ -2,7 +2,7 @@ package binarysearch;
 
 /**
  * @author Saurabh Vaish
- * @Date 29-05-2021
+ * @Date 11-06-2023
  *
  *
  *  name ==  its also called modified binary search array
@@ -20,18 +20,19 @@ package binarysearch;
  *
  *
  */
-public class SearchInRotatedSortedArray {
+public class SearchInRotatedSortedArrayWithDuplicates {
 
     public static void main(String[] args) {
-        int ar[] = {0, 1, 2, 4, 5, 6, 8};
-        int rotated[] = {4, 6, 8, 0, 1, 2};  // rotated array by some pivot
+        int rotated[] = {3, 1,2,3,3,3,3};  // rotated array by some pivot
         int target = 1;
-        int res = searchRotatedArrayWithNoDuplicates(rotated, target);
+
+        int res = searchRotatedArrayWithDuplicates(rotated, target);
         if(res<0) System.out.println("No result found !");
         else System.out.println("Result found at = "+res);
     }
 
-    private static int searchRotatedArrayWithNoDuplicates(int[] arr, int x) {
+    // complexity = O(n)
+    private static int searchRotatedArrayWithDuplicates(int[] arr, int x) {
         int start=0,end=arr.length-1;
 
         while(start<=end){
@@ -39,8 +40,13 @@ public class SearchInRotatedSortedArray {
             if(arr[mid]==x) {
                 return mid;
             }
-            else if(arr[start]<=arr[mid]){  // left is sorted
-                if(arr[start] <=x && x<arr[mid]) { // check element exist in left part
+            if(arr[start]==arr[mid] && arr[mid]==arr[end]){  // checking if elements are same for boundary then trim search space
+                start++;
+                end--;
+                continue;
+            }
+            if(arr[start]<=arr[mid]){  // left is sorted
+                if(arr[start] <=x && x<arr[mid]) {
                     end=mid-1;
                 }else {
                     start=mid+1;
