@@ -5,7 +5,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 
 /**
- * @Problem == In a given array , find the index of numbers whose sum if equal to target sum
+ * @Problem == In a given array , find the numbers whose sum if equal to target sum
  *
  * @Author saurabh vaish
  * @Date 04-09-2022

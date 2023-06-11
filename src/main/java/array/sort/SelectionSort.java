@@ -8,6 +8,8 @@ import java.util.Arrays;
  *
  *  Selection sort is a simple sorting algorithm that works by replacing the element at currect position
  *
+ *  It select the minimum element and place it at currect position
+ *
  *  In every pass we find the max or min element and swap it with the element at right position.
  *
  * @Complexity == Best Case == O(n^2)

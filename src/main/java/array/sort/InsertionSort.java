@@ -44,6 +44,19 @@ public class InsertionSort {
 
     }
 
+    // stable sorting means if two elements are same then they will not do swapping
+    public static void sortAscendingOrderStableSorting(int [] ar){
+        for (int i = 1; i < ar.length; i++) {
+            int j=i-1;
+            while (j>=0 && ar[j+1]<ar[j]){
+                int temp = ar[j+1];
+                ar[j+1]=ar[j];
+                ar[j]=temp;
+                j--;
+            }
+        }
+    }
+
     public static void swap(int [] arr,int i,int j){
         int temp = arr[i];
         arr[i] = arr[j];
