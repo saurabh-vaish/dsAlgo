@@ -30,7 +30,6 @@ public class RemoveDuplicates {
 
     public static Node<Integer> removeDuplicatesInUnSortedList(Node<Integer> head) {
     if(head==null)return head;
-        Node<Integer> node = head;
 
         /***
         // approach 1 using two loops complexity O(n^2)
@@ -53,8 +52,9 @@ public class RemoveDuplicates {
 
         // approach 2 using hashset  complexity O(n)
         HashSet<Integer> set = new HashSet<>();
+        Node<Integer> node = head; // to track previous node
         Node<Integer> prev = node; // to track previous node
-        while (node.next != null) {
+        while (node != null) {
             if(set.contains(node.value)) {
                 prev.next = node.next; // skip next node
             }else {
@@ -63,7 +63,22 @@ public class RemoveDuplicates {
             }
             node = node.next;
         }
-        return node;
+        return head;
+
+//        if(head==null)return null;
+//        Node<Integer> dummy= new Node<>(0); // dummy node will point to head
+//        dummy.next=head;
+//        Node<Integer> nextNode = head; // used in iteration so that head wont effect
+//        Node<Integer> prev = dummy; // taking one more ref of dummy as if we iterate dummy it will not be on head so do process using ref
+//        while (nextNode!=null){
+//            if(nextNode.value==value){
+//                prev.next = nextNode.next;
+//            }else{
+//                prev = prev.next;
+//            }
+//            nextNode=nextNode.next;
+//        }
+//        return dummy.next;
     }
 
 
@@ -87,15 +102,14 @@ public class RemoveDuplicates {
         sorteList.display();
 
         SinglyLinkedList<Integer> unsortedList = new SinglyLinkedList<>();
-        unsortedList.add(2);
-        unsortedList.add(4);
-        unsortedList.add(1);
-        unsortedList.add(5);
-        unsortedList.add(2);
-        unsortedList.add(1);
         unsortedList.add(3);
-        unsortedList.add(1);
-        unsortedList.add(6);
+        unsortedList.add(2);
+        unsortedList.add(3);
+        unsortedList.add(4);
+        unsortedList.add(2);
+        unsortedList.add(3);
+//        unsortedList.add(1);
+//        unsortedList.add(6);
 
         unsortedList.display();
 

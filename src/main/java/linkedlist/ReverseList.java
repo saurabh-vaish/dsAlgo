@@ -13,7 +13,7 @@ public class ReverseList {
     public static void main(String[] args) {
         SinglyLinkedListNormal<Integer> list = new SinglyLinkedListNormal<>();
         list.addAll(List.of(1,2,3,4,5));
-        Node<Integer> temp = list.getHead();
+        Node<Integer> temp = reverseList(list.getHead());
         list.display(temp);
         list.display(temp);
     }
