@@ -31,6 +31,7 @@ public class MatrixRowColZero {
 
     }
 
+    // compl - O(n2)  ( both)
     private static int[][] usingBruteForce(int[][] ar) {
         int[] dummy1 = new int[ar.length];
         int[] dummy2 = new int[ar[0].length];

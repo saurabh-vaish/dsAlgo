@@ -13,9 +13,10 @@ public class MergeSort {
 
         int ar[] = new int[]{4,3,1,2,5};
 
-        int [] newAr = mergeSort(ar);
+        ar = mergeSort(ar);
 
-        System.out.println(Arrays.toString(newAr));
+
+        System.out.println(Arrays.toString(ar));
 
         mergeSortInPlace(ar,0, ar.length);
         System.out.println(Arrays.toString(ar));
