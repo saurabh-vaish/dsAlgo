@@ -20,15 +20,17 @@ public class ZigZagOrSpiralTraversal {
         List<List<String>> result = new ArrayList<>();
         Queue<Node<String>> queue = new LinkedList<>();
         queue.add(root);
-        boolean leftToRight = true;
+
+        boolean leftToRight = true;  // to track we need to insert from left to right or right to left
 
         while (!queue.isEmpty()) {
             int size = queue.size();
-            String[] level = new String[size];
+            String[] level = new String[size];  // create a temp array for queue size to hold elements
+
             for (int i = 0; i < size; i++) {
                 Node<String> visited = queue.poll();
 
-                int index = leftToRight?i:size-1-i;  // reverse the order of traversal by index
+                int index = leftToRight?i:size-1-i;  // reverse the order of traversal by index, if right to left then insert from end of the array
 
                 level[index]=visited.value;
 

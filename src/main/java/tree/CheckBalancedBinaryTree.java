@@ -17,17 +17,20 @@ public class CheckBalancedBinaryTree {
     }
 
     // first get height of the subtree and at any point of node if the height diff is greater than 1 means its not a balanced tree so return -1;
+// This code recursively calculates the height of a binary tree and checks if it is balanced by comparing the heights of its left and right subtrees.
     private int dfsHeight(Node<String> root) {
         if(root == null) return 0;
+
         int leftHeight = dfsHeight(root.left);
-        if(leftHeight == -1) return -1;
+        if(leftHeight == -1) return -1;     // check if any node is not balanced return
 
         int rightHeight = dfsHeight(root.right);
-        if(rightHeight == -1) return -1;
+        if(rightHeight == -1) return -1;   // check if any node is not balanced return
 
-        if(Math.abs(leftHeight-rightHeight)>1)return -1;
+        if(Math.abs(leftHeight-rightHeight)>1)return -1;   // calculating height of left and right subtree and
+        //check the diff should not exceed one
 
-        return Math.max(leftHeight,rightHeight) + 1 ;  // getting height of node
+        return Math.max(leftHeight,rightHeight) + 1 ;  // return max height from left and right , adding 1 for root
     }
 
 

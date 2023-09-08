@@ -33,6 +33,8 @@ public class HeightOfTree {
         return 1+Math.max(heightUsingRecursion(root.left),heightUsingRecursion(root.right));
     }
 
+
+    // using BFS
     public int heightUsingIteration(Node<String> root){
         int height=0;
         Queue<Node<String>> queue = new LinkedList<>();

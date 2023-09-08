@@ -1,6 +1,10 @@
 package tree;
 
 
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.stream.Stream;
+
 /***
  * Given two binary tree, determine if they are the same or not.
  *
@@ -13,15 +17,22 @@ package tree;
 
 public class CheckSimilarTrees {
 
+    private static Node<Integer> node1;
+    private static Node<Integer> node2;
+    
     // pre order traversal of both the tree and check for same
-    public boolean checkForSimilarTrees(Node<String> node,Node<String> node1) {
-        if(node == null && node1 == null) return node==node1;
-
-        return (node.value== node1.value) && checkForSimilarTrees(node.left,node1.left) && checkForSimilarTrees(node.right,node1.right);
+    public boolean checkForSimilarTrees(Node<Integer> node,Node<Integer> node1) {
+        if(node == null || node1 == null) return node==null && node1==null;
+        boolean ans = (node.value.equals(node1.value));
+        boolean ans2 = checkForSimilarTrees(node.left,node1.left);
+        boolean ans3 = checkForSimilarTrees(node.right,node1.right);
+        return ans && ans2 && ans3;
     }
 
 
     public static void main(String[] args) {
+        
+        
 
         CheckSimilarTrees similarTrees = new CheckSimilarTrees();
 
@@ -73,8 +84,85 @@ public class CheckSimilarTrees {
         d1.right=h1;
         e1.right=i1;
 
-        System.out.println(similarTrees.checkForSimilarTrees(a,a1));
+//        System.out.println(similarTrees.checkForSimilarTrees(a,a1));
+
+        int n = 10;
+        String [][] ar = {
+                {"58 24 67 0 34 62 69 -1 -1 -1 41 -1 64 -1 78 -1 -1 -1 -1 -1 -1"},
+                {"58 24 67 0 34 62 69 -1 -1 -1 41 -1 64 -1 78 -1 -1 -1 -1 -1 -1"},
+                {"36 61 92 45 95 4 16 5 81 91 42 91 2 82 18 -1 -1 -1 27 -1 -1 -1 27 -1 -1 -1 53 -1 21 -1 95 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1"},
+                {"36 61 92 45 95 4 16 5 81 91 42 91 2 82 98 -1 -1 -1 27 -1 -1 -1 27 -1 -1 -1 53 -1 21 -1 95 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1"},
+                {"68 60 71 57 -1 -1 72 51 -1 -1 81 35 -1 -1 87 33 -1 -1 89 18 -1 -1 94 7 -1 -1 95 -1 -1 -1 -1"},
+                {"68 60 71 57 -1 -1 72 51 -1 -1 81 35 -1 -1 87 33 -1 -1 89 18 -1 -1 94 7 -1 -1 95 -1 -1 -1 -1"},
+                {"68 53 147 111 -1 -1 44 141 -1 -1 62 64 -1 -1 157 -1 -1 -1 -1"},
+                {"68 53 147 111 -1 -1 44 141 -1 -1 62 64 -1 -1 157 -1 -1 -1 -1"},
+    {"68 53 147 111 -1 -1 44 141 -1 -1 62 64 -1 -1 157 -1 -1 -1 -1"},
+        {"68 53 147 111 -1 -1 44 141 -1 -1 62 -1 64 -1 157 -1 -1 -1 -1"},
+        {"17 -1 19 -1 3 -1 1 -1 9 -1 18 -1 16 -1 15 -1 10 -1 2 -1 8 -1 6 -1 0 -1 2 -1 4 -1 8 -1 6 -1 5 -1 -1"},
+        {"17 -1 19 -1 3 -1 1 -1 9 -1 18 -1 16 -1 15 -1 10 -1 2 -1 8 -1 6 -1 0 -1 2 -1 4 -1 8 -1 6 -1 5 -1 -1"},
+        {"23 -1 38 -1 73 -1 81 -1 102 -1 143 -1 147 -1 164 -1 -1"},
+        {"23 -1 38 -1 73 -1 81 -1 102 -1 143 147 -1 -1 164 -1 -1"},
+        {"13 10 15 10 -1 -1 17 9 -1 -1 19 6 -1 -1 23 3 -1 -1 25 2 -1 -1 26 2 -1 -1 28 1 -1 -1 31 0 -1 -1 33 -1 -1 -1 33 -1 -1"},
+        {"13 10 15 10 -1 -1 17 9 -1 -1 19 6 -1 -1 23 3 -1 -1 25 2 -1 -1 26 2 -1 -1 28 1 -1 -1 31 0 -1 -1 33 -1 -1 -1 33 -1 -1"},
+        {"68 88 -1 137 -1 73 -1 26 -1 39 -1 144 -1 58 -1 131 -1 26 -1 16 -1 140 -1 6 -1 4 -1 84 -1 23 -1 129 -1 98 -1 93 -1 51 -1 6 -1 50 -1 70 -1 129 -1 140 -1 -1 -1"},
+        {"68 88 -1 137 -1 73 -1 26 -1 39 -1 144 -1 58 -1 131 -1 26 -1 16 -1 140 -1 6 -1 4 -1 84 -1 23 -1 129 -1 98 -1 93 -1 51 -1 6 -1 50 -1 70 -1 129 -1 140 -1 -1 -1"},
+        {"27 20 33 6 22 29 39 4 8 21 23 29 30 36 41 -1 -1 -1 15 -1 -1 -1 24 -1 -1 -1 32 -1 -1 -1 45 -1 -1 -1 -1 -1 -1 -1 -1"},
+        {"27 20 33 6 22 29 39 4 8 21 23 29 30 36 41 -1 -1 -1 15 -1 -1 -1 24 -1 -1 -1 32 -1 -1 45 -1 -1 -1 -1 -1 -1 -1 -1 -1"}};
+
+        for(int ii=0;ii<ar.length;ii=ii+2){
+//            node1=null;
+//            node2=null;
+            String arr1 = ar[ii][0];
+            String arr2 = ar[ii+1][0];
+            node1 = new Node(-1);
+            node2 = new Node(-1);
+            Stream.of( arr1.split(" ")).mapToInt(Integer::valueOf).forEach(ee->{
+                insert(node1,ee,node1);
+            });
+            Stream.of( arr2.split(" ")).mapToInt(Integer::valueOf).forEach(ee->{
+                insert(node2,ee,node2);
+            });
+
+            System.out.println(similarTrees.checkForSimilarTrees(node1,node2));
+        }
+
+
+
 
     }
+
+
+    static void insert(Node temp, int key,Node root)
+    {
+
+//        if (temp == null) {
+//            root = new Node(key);
+//            return;
+//        }
+        Queue<Node> q = new LinkedList<>();
+        q.add(temp);
+
+        // Do level order traversal until we find
+        // an empty place.
+        while (!q.isEmpty()) {
+            temp = q.peek();
+            q.remove();
+
+            if (temp.left == null) {
+                temp.left = new Node(key);
+                break;
+            }
+            else
+                q.add(temp.left);
+
+            if (temp.right == null) {
+                temp.right = new Node(key);
+                break;
+            }
+            else
+                q.add(temp.right);
+        }
+    }
+
 
 }
