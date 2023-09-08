@@ -1,6 +1,8 @@
 package binarysearch;
 
 /**
+ * @Link = https://www.codingninjas.com/studio/problems/first-and-last-position-of-an-element-in-sorted-array_1082549
+ *
  * @Problem  == In a given sorted having duplicates find first and last occurrence of target .
  *
  * @Solution  == We can solve by calling two methods findFirst and findLast .
@@ -16,8 +18,8 @@ package binarysearch;
 public class FindFirstAndLastOccurrenceOfElementInSortedArray {
 
     public static void main(String[] args) {
-        int[] input1 = {2,3,3,4};
-        System.out.println(findFirst(input1,1)+" -- "+findLast(input1,1));
+        int[] input1 = {1,1,2,2,2,3,4,4,5,6,7};
+//        System.out.println(findFirst(input1,1)+" -- "+findLast(input1,1));
         System.out.println(findFirst(input1,3)+" -- "+findLast(input1,3));
         System.out.println(findFirst(input1,4)+" -- "+findLast(input1,4));
 
@@ -32,35 +34,37 @@ public class FindFirstAndLastOccurrenceOfElementInSortedArray {
         System.out.println(findFirst(input3,1)+" -- "+findLast(input3,1));
     }
 
-    private static int findFirst(int[] ar, int target) {
-        int left=0;
-        int right=ar.length-1;
+    // lower bound
+    private static int findFirst(int[] ar, int x) {
         int len=ar.length;
 
-        if(len==0 || target<ar[0] || target>ar[len-1]){
+        if(len==0 || x<ar[0] || x>ar[len-1]){
             return -1;
         }
-        if(len==1 && target==ar[0]){
+        if(len==1 && x==ar[0]){
             return 0;
         }
+        int low=0,high = len-1;
 
-        while (left<right){
-            int mid=(left+right)/2;
-            if(ar[mid]>=target){  // find the minimum index for which input[index] >= target
-                right=mid;
-            }else{
-                left=mid+1;
+        int first = -1;
+
+        while (low<=high){
+            int mid = low + (high-low)/2;
+
+            if(ar[mid]==x){
+                first=mid;
+                high=mid-1;  // as we need to find the first occurrence so shifting high
+            } else if (ar[mid]<x) {
+                low=mid+1;          // if value is still less move low across mid
+            }else {
+                high=mid-1; // value high so move high before mid
             }
         }
 
-        if(ar[left]!=target)return -1;
-
-        return left;
+        return first;
     }
 
     private static int findLast(int[] ar, int target) {
-        int left=0;
-        int right=ar.length-1;
         int len=ar.length;
 
         if(len==0 || target<ar[0] || target>ar[len-1]){
@@ -70,19 +74,22 @@ public class FindFirstAndLastOccurrenceOfElementInSortedArray {
             return 0;
         }
 
-        while (left<right){
-            int mid=(left+right)/2;
-            if(ar[mid]>target){  // find the minimum index for which input[index] >= target
-                right=mid;
-            }else{
-                left=mid+1;
+        int low=0,high = len-1;
+        int last = -1;
+
+        while (low<=high){
+            int mid = low + (high-low)/2;
+
+            if(ar[mid]==target){
+                last=mid;
+                low=mid+1;          // since we need to find last so whenever value matches move low to high
+            } else if (ar[mid]<target) {  // if value is less then move low to high
+                low=mid+1;
+            }else {
+                high=mid-1; // value is more so move high to low
             }
         }
 
-        if(ar[left]==target)return left;
-        if(ar[left-1]!=target)return -1;
-
-        return left-1;
+        return last;
     }
-
 }

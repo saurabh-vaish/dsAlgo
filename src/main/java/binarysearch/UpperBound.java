@@ -3,7 +3,7 @@ package binarysearch;
 /**
  * @Link =https://www.codingninjas.com/codestudio/problems/implement-upper-bound_8165383
  *
- * find the upper bound of element x , the lower bound is defined as index at which arr[indx] is greater than x
+ * find the upper bound of element x , the lower bound is defined as index which is as smallest as possible at which arr[indx] is greater than x
  *  i.e. upper_bound = arr[ind] > x
  *
  * @Author saurabh vaish

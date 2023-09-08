@@ -3,8 +3,8 @@ package binarysearch;
 /**
  * @Link =https://www.codingninjas.com/codestudio/problems/lower-bound_8165382
  *
- * find the lower bound of element x , the lower bound is defined as index at which arr[indx] is not less than x
- *  i.e. lower_bound = arr[ind] >=x
+ * find the lower bound of element x , the lower bound is defined as smallest index as possible as at which arr[indx] is not less than x
+ *  i.e. lower_bound = arr[ind] >=x ,
  *
  * @Author saurabh vaish
  * @Date 10-06-2023

@@ -1,6 +1,8 @@
 package binarysearch;
 
 /**
+ * @Link == https://www.codingninjas.com/studio/problems/square-root-integral_893351?leftPanelTab=1
+ *
  * @Problem == Compute and return the square root of x, where x is guaranteed to be a non-negative integer.
  *
  * @Solution == The square root of an integer x cannot be greater than x, and at the minimum it can be 0.
@@ -38,26 +40,33 @@ public class SquarerootOfPositiveInteger {
         getSqrtReal(0.04);
     }
 
-    private static void getSqrtInteger(int n) {
+    // using binary search , O(n)  [ apprx root ]
+    private static long  getSqrtInteger(int n) {
         if(n==0 || n==1){       // sqrt of 0 & 1 is always n
-            System.out.println("sqrt of number = "+n);
-            return;
+            return n;
         }
-        long left=0;
-        long right=n;
-        while(left<right){
-           long mid=(left+right)/2;
-            long sqrt=mid*mid;
-            if(sqrt>n)right=mid;    // if sqrt is greater than we will search in left
-            else left=mid+1;
+        long left=2; long right=n/2; // as srt can't be more than its half
+        long ans=0;
+        while(left<=right){
+            long mid = left+(right-left)/2;
+
+            if(mid<=n/mid){
+                ans=mid;
+                left=mid+1;
+            }else{
+                right=mid-1;
+            }
         }
-        System.out.println("sqrt of number "+n+" = "+(left-1));
+
+        return ans;
     }
+
 
 
     private static final double TOLERANCE = 0.000001;
     private enum Ordering { SMALLER, EQUAL, GREATER}
 
+    // exact root
     private static void getSqrtReal(double n) {
         double left,right;
         if(n==0 || n==1){       // sqrt of 0 & 1 is always n

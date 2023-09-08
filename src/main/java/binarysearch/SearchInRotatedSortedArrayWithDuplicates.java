@@ -4,6 +4,7 @@ package binarysearch;
  * @author Saurabh Vaish
  * @Date 11-06-2023
  *
+ * @Link = https://www.codingninjas.com/studio/problems/search-in-a-rotated-sorted-array-ii_7449547
  *
  *  name ==  its also called modified binary search array
  *
